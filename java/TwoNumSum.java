@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TowNumSum
+public class TwoNumSum
 {
     public static void main(String[] args)
     {
@@ -58,35 +58,6 @@ public class TowNumSum
                 return new int[]{j, targetMatch};
             }
             else sums.add(j);
-        }
-        return new int[0];
-    }
-
-
-    /**
-     * 时间复杂度：O(n*log(n)) = O(n*log(n)) + O(n) + O(1)
-     * 空间复杂度：O(n) + O(1)
-     *
-     * @param array     输入的数组
-     * @param targetSum 目标值
-     * @return 能匹配到目标值的组合
-     */
-
-    public static int[] twoNumberSumSort(int[] array, int targetSum)
-    {
-        Arrays.sort(array);
-
-        for (int left = 0, right = array.length - 1; left < right; )
-        {
-            if (array[left] + array[right] < targetSum)
-            {
-                left++;
-            }
-            else if (array[left] + array[right] > targetSum)
-            {
-                right++;
-            }
-            else return new int[]{array[left], array[right]};
         }
         return new int[0];
     }
