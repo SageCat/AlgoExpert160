@@ -1,12 +1,9 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
+import java.util.*;
 
 public class TournamentWinner
 {
     public static void main(String[] args)
     {
-
         /*
             [
         ["HTML", "Java"],
@@ -22,6 +19,9 @@ public class TournamentWinner
       ]
          */
 
+        /*
+        初始化比赛列表
+         */
         ArrayList<ArrayList<String>> competition = new ArrayList<ArrayList<String>>();
         String[][] group = new String[][]{
                 {"HTML", "Java"},
@@ -45,35 +45,62 @@ public class TournamentWinner
             competition.add(i, temp);
         }
 
+        /*
+        初始化比赛结局列表
+         */
         ArrayList<Integer> result = new ArrayList<>(Arrays.asList(0, 1, 1, 1, 0, 1, 0, 1, 1, 0));
 
-        tournamentWinner(competition, result);
+        String winner = tournamentWinner(competition, result);
+        System.out.println("the winner is " + winner);
     }
 
-    public static String tournamentWinner(
-            ArrayList<ArrayList<String>> competitions, ArrayList<Integer> results)
+    public static String tournamentWinner(ArrayList<ArrayList<String>> competitions, ArrayList<Integer> results)
     {
-        // Write your code here.
+        /*
+        创建一个 HashMap 用于存储队伍的成绩
+         */
+        HashMap<String, Integer> gradeList = new HashMap<>();
 
-        ArrayList<ArrayList<String>> swampedCompetition = new ArrayList<ArrayList<String>>(competitions.size());
-
-        for (int i = 0; i < competitions.size(); i++)
+        /*
+        比赛开始前初始化所有的队伍成绩，此时成绩均为0
+         */
+        for (ArrayList<String> competition : competitions)
         {
-            if (results.get(i) == 0)
+            for (String s : competition)
             {
-                swampedCompetition.add(i, competitions.get(i));
-                System.out.println(swampedCompetition.get(i));
-            }
-            else
-            {
-                ArrayList<String> temp = new ArrayList<>();
-                temp.add(0, competitions.get(i).get(1));
-                temp.add(1, competitions.get(i).get(0));
-                swampedCompetition.add(i, temp);
+                gradeList.put(s, 0);
             }
         }
 
+        /*
+        开始比赛并记录成绩
+         */
+        for (int i = 0; i < competitions.size(); i++)
+        {
+            String winnerName;
+            if (results.get(i) == 0)
+            {
+                /*
+                右边的是赢家
+                 */
+                winnerName = String.valueOf(competitions.get(i).get(1));
+            }
+            else
+            {
+                /*
+                左边的是赢家
+                 */
+                winnerName = String.valueOf(competitions.get(i).get(0));
+            }
+            /*
+           根据赢家的列表更新成绩
+             */
+            gradeList.put(winnerName, gradeList.get(winnerName) + 3);
+        }
 
-        return "";
+        /*
+        返回得分最高的队伍名称
+         */
+        return Collections.max(gradeList.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 }
