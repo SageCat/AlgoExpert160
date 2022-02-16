@@ -48,7 +48,7 @@ public class TournamentWinner
         /*
         初始化比赛结局列表
          */
-        ArrayList<Integer> result = new ArrayList<>(Arrays.asList(0, 1, 1, 1, 0, 1, 0, 1, 1, 0));
+        ArrayList<Integer> result = new ArrayList<>(Arrays.asList(0, 1, 1, 1, 0, 1, 0, 1, 1, 1));
 
         String winner = tournamentWinner(competition, result);
         System.out.println("the winner is " + winner);
