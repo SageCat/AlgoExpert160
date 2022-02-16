@@ -1,8 +1,4 @@
-import java.awt.font.GraphicAttribute;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 public class SortedSquaredArray
 {
@@ -66,6 +62,9 @@ public class SortedSquaredArray
         int rightIndex = array.length - 1;
         int[] result = new int[array.length];
 
+        /*
+        使用变量从结果数组的最大角标处开始存储数据，相比第一版，省去了一个标注角标的变量
+         */
         for (int i = array.length - 1; i >= 0; i--)
         {
             int smallerValue = array[leftIndex];
