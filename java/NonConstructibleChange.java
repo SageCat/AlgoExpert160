@@ -6,7 +6,7 @@ public class NonConstructibleChange
     public static void main(String[] args)
     {
 
-        int[] input = {5, 7, 1, 1, 2, 3, 22};
+        int[] input = {5, 7, 2, 4, 2, 3, 22};
         int i = nonConstructibleChange(input);
 
     }
@@ -41,6 +41,10 @@ public class NonConstructibleChange
             return 1;
         }
 
+        /*
+        再次检查之后发现，这种将第一个元素赋值给 currentBiggestSum 的方法在给定的数组中没有数字[1]的时候会返回错误的结果
+        因为若给定的数组中没有数字1，则返回的结果应该是 1 才对
+         */
         int currentBiggestSum = coins[0];
         for (int j = 1; j < coins.length; j++)
         {
